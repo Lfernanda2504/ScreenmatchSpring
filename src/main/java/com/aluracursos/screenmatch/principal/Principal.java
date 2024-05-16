@@ -20,9 +20,9 @@ public class Principal {
     private ConvierteDatos conversor = new ConvierteDatos();
     private List<DatosSerie> datosSeries = new ArrayList<>();
 
-    private SerieRepository repository;
+    private SerieRepository repositorio;
     public Principal(SerieRepository repository) {
-        this.repository = repository;
+        this.repositorio = repository;
     }
 
     public void muestraElMenu() {
@@ -81,17 +81,17 @@ public class Principal {
     private void buscarSerieWeb() {
         DatosSerie datos = getDatosSerie();
         Serie serie = new Serie(datos);
-        repository.save(serie);
+        repositorio.save(serie);
         //datosSeries.add(datos);
         System.out.println(datos);
     }
 
     private void mostrarSeriesBuscadas() {
-        List<Serie> series = repository.findAll();
-                //new ArrayList<>();
-        series = datosSeries.stream()
-                .map(d -> new Serie(d))
-                .collect(Collectors.toList());
+        List<Serie> series = repositorio.findAll();
+//                //new ArrayList<>();
+//        series = datosSeries.stream()
+//                .map(d -> new Serie(d))
+//                .collect(Collectors.toList());
 
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
